@@ -1,0 +1,35 @@
+#header{
+    background-color: #031633;
+    color: white;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#input-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+button{
+    margin-left: 5px;
+}
+
+.col{
+    border:1px solid darkblue;
+}
+
+#matrix-part{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
