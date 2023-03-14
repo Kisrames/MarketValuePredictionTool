@@ -5,7 +5,7 @@ const matricesDiv = document.querySelector("#matrix-part");
 const matricesSection = document.querySelector("#matrices-section");
 const containerForFirst = document.querySelector("#card-container");
 
-//this functis responsible for creating an alert after the button is been clicked
+//this function is responsible for creating an alert after the button is been clicked
 function createCompanyAlert(e){
     // we read the input box here
     let companyQuantity = inputSection.value.trim();
@@ -17,11 +17,11 @@ function createCompanyAlert(e){
     let addAlert = document.createElement("div");
     companyQuantity = parseInt(companyQuantity);
     if(Number.isInteger(companyQuantity)){
-        if(companyQuantity>5 || companyQuantity<1){
+        if(companyQuantity>5){
             addAlert.className = "alert alert-primary";
             addAlert.id = "company-alert";
             addAlert.role = "alert";
-            addAlert.innerText = "Please enter a proper value (1-5).";
+            addAlert.innerText = "Please enter a value less then 6.";
         }
         // here, if user input the value we can process, we generate the table
         else{
@@ -29,10 +29,10 @@ function createCompanyAlert(e){
             addAlert.id = "company-alert";
             addAlert.role = "alert";
             addAlert.innerText = "The number of companies are: "+companyQuantity;
-            // generating the table
-            tableGenerator(companyQuantity);
             //create the first inputs for the first matrix
             createFirstValues(companyQuantity);
+            // generating the table
+            tableGenerator(companyQuantity);
         }
     }
     else{
@@ -101,10 +101,8 @@ function addMatrixCalculateButton(){
     row2.id = "matrix-calculate-button";
     const matrixCalculateButton = document.createElement("button");
     matrixCalculateButton.className = "btn btn-primary mt-3 w-25";
-    matrixCalculateButton.id = "matrix-calculate";
     matrixCalculateButton.type = "submit";
     matrixCalculateButton.innerText = "Calculate Matrix";
-    matrixCalculateButton.addEventListener("click", readValues);
     row2.appendChild(matrixCalculateButton);
     matricesSection.appendChild(row2);
 }
@@ -145,90 +143,15 @@ function createFirstValues(companyQuantity){
         label.innerText = "Company "+(i+1);
         let input = document.createElement("input");
         input.className = "form-control";
-        input.id = "company-input";
-        input.placeholder = (i+1);
+        input.placeholder = "Enter Value";
         flexChild.appendChild(label);
         flexChild.appendChild(input);
         containerBody.appendChild(flexChild);
     }
     cardContainer.appendChild(containerBody);
     containerForFirst.appendChild(cardContainer);
+    matricesSection.appendChild(containerForFirst);
 }
-
-// calculation part
-
-var x;
-var array1 = [];
-var array2 = [[]];
-var y = [];
-
-
-function Calculation(array1, array2) {
-    var sum = 0;
-    var i = 0, j = 0;
-    for (var z = 0; z < 12; z++) { // for 12 months
-        console.log(z + 1 + ":");
-        for (i = 0; i < array1.length; i++) {
-            for (j = 0; j < array1.length; j++) {
-                y[j] = array1[j] * array2[j][i];
-                sum = sum + y[j];
-                if (j == array1.length - 1) {
-                    console.log(sum);
-                }
-            }
-            array1[i] = sum; // new value replace the old array1
-            sum = 0;
-
-        }
-    }
-}
-
-function readValues(){
-    //reading the values of the company section
-    const inputs = document.querySelectorAll("#company-input");
-    for(let k=0;k<inputs.length;k++){
-        let company = parseFloat(inputs[k].value);
-        array1.push(company);
-    }
-
-    // reading the values of the 2d table
-    let flag = true;
-    const matrixTable = document.querySelector("table");
-    const tbody = matrixTable.querySelector("tbody");
-    const rows = tbody.querySelectorAll("tr");
-    array2.push([]);
-    for(let i=0;i<rows.length;i++){
-        let arr = [];
-        const tds = rows[i].querySelectorAll("td");
-        for(let j=0;j<tds.length;j++){
-            const input = tds[j].querySelector("input");
-            let variable = parseFloat(input.value);
-            if(variable >= 1 || variable < 0){
-                input.style.border = "5px solid red";
-                flag = false;
-            }
-            else if(isNaN(variable)){
-                input.style.border = "5px solid red";
-                flag = false;
-            }
-            else{
-                input.style.border = "";
-                arr.push(variable);
-            }
-        }
-        array2[i].push(arr);
-    }
-    if(flag===true){
-        // we should read the values in this condition
-        for(let k=0;k<array2.length;k++){
-            for(let y=0;y<array2.length;y++){
-                console.table(array2);
-            }
-        }
-        Calculation(array1, array2);
-    }
-}
-
 
 main();
 function main(){

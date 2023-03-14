@@ -44,3 +44,7 @@ button{
     flex: 1;
     padding: 10px;
 }
+
+#matrix-calculate-button{
+    margin-bottom: 40px;
+}
