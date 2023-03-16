@@ -77,6 +77,8 @@ function tableGenerator(companyQuantity){
             let td = document.createElement("td");
             let inputBox = document.createElement("input");
             inputBox.type = "number";
+            inputBox.id = "only-float";
+            inputBox.className = "form-control";
             inputBox.placeholder = j.toString();
             inputBox.setAttribute('size', '5%');
             td.appendChild(inputBox);
@@ -101,6 +103,7 @@ function addMatrixCalculateButton(){
     row2.id = "matrix-calculate-button";
     const matrixCalculateButton = document.createElement("button");
     matrixCalculateButton.className = "btn btn-primary mt-3 w-25";
+    matrixCalculateButton.addEventListener("click",readValues);
     matrixCalculateButton.type = "submit";
     matrixCalculateButton.innerText = "Calculate Matrix";
     row2.appendChild(matrixCalculateButton);
@@ -135,6 +138,7 @@ function createFirstValues(companyQuantity){
     cardBody.className = "card-body";
     let containerBody = document.createElement("div");
     containerBody.className = "container d-flex mb-3";
+    containerBody.id = "company-input-section";
     for(let i=0;i<companyQuantity;i++){
         let flexChild = document.createElement("div");
         flexChild.className = "flex-child"
@@ -143,6 +147,7 @@ function createFirstValues(companyQuantity){
         label.innerText = "Company "+(i+1);
         let input = document.createElement("input");
         input.className = "form-control";
+        input.id = "only-float";
         input.placeholder = "Enter Value";
         flexChild.appendChild(label);
         flexChild.appendChild(input);
@@ -150,7 +155,6 @@ function createFirstValues(companyQuantity){
     }
     cardContainer.appendChild(containerBody);
     containerForFirst.appendChild(cardContainer);
-    matricesSection.appendChild(containerForFirst);
 }
 
 main();

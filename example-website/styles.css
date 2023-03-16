@@ -1,3 +1,12 @@
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
 #header{
     background-color: #031633;
     color: white;
@@ -47,4 +56,13 @@ button{
 
 #matrix-calculate-button{
     margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 768px){
+    #company-input-section{
+        display: inline-flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }
